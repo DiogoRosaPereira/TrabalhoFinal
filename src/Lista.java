@@ -1,3 +1,5 @@
+import trabTeste.Node;
+
 public class Lista implements Iterable<String> {
 
 	private class ListaIterator implements Iterador {
@@ -54,6 +56,16 @@ public class Lista implements Iterable<String> {
 			}
 		}
 		
+		private void verificaHead(String dado) {
+			Node novo = new Node(dado);
+			if(head == null){
+				current = novo;
+				head = novo;
+				tail = novo;
+			}
+			
+		}
+
 		@Override
 		public void insert(String dado) {
 			if (current == null) {
