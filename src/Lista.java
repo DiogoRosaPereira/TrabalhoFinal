@@ -1,5 +1,4 @@
 
-
 public class Lista implements Iterable<String> {
 
 	private class ListaIterator implements Iterador {
@@ -206,13 +205,13 @@ public class Lista implements Iterable<String> {
 	}
 
 	public void pushFront(String dado) {
-		Node node = new Node(dado);
-		if (head == null) {
-			tail = node;
-		} else {
-			node.setNext(head);
-		}
-		head = node;
+		Node novo = new Node(dado);
+		
+		novo.setNext(head);
+		head.setBack(novo);
+		head = novo;
+		
+		tamanho++;
 	}
 
 	public void print() {
