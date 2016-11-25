@@ -67,21 +67,7 @@ public class Lista implements Iterable<String> {
 		
 	}
 	
-	private class Node {
-		public final String dado;
-		private Node next;
-		
-		public Node(String dado) {
-			this.dado = dado;
-			this.next = null;
-		}
-		public void setNext(Node next) {
-			this.next = next;
-		}
-		public Node getNext() {
-			return next;
-		}
-	}
+	
 	
 	private Node head = null;
 	private Node tail = null;
