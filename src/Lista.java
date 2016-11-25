@@ -1,4 +1,3 @@
-import trabTeste.Node;
 
 public class Lista implements Iterable<String> {
 
@@ -111,11 +110,11 @@ public class Lista implements Iterable<String> {
 				throw new IllegalStateException("Use next()!");
 			}
 			if(novo == null || head == null)
-		            return false;
+		        return false;
 		        
 		        
 		    if(novo.dado.compareTo(head.dado)==0)
-		            return removePrimeiro();
+		        return removePrimeiro();
 		        
 		        if(novo.dado.compareTo(tail.dado)==0)
 		            return removeUltimo();
@@ -141,6 +140,58 @@ public class Lista implements Iterable<String> {
 	}
 	
 	
+	private boolean removeUltimo() {
+		if(tail == null)
+            return false;
+        
+        Node novoTail = tail.getBack();
+        
+        if(tail.dado.compareTo(head.dado)==0)
+            head = null;
+        
+        if(novoTail != null)
+                 
+        	novoTail.setNext(null);     //novaCauda--Null     anterior<--cauda    
+
+        tail.setBack(null);   // nova cauda --> null        null<--cauda
+
+        tail = novoTail;
+         
+        tamanho --;
+        
+        return true;
+	}
+		}
+
+	private int tamanho;
+
+	private boolean removePrimeiro() {
+		 if(head == null)
+	            return false;
+	        
+	        Node novaCabeca = head.getNext();
+	        
+	        
+	        if(tail.dado.compareTo(head.dado)==0)
+	            tail = null;
+	        
+	        if(novaCabeca != null)
+	                
+	            novaCabeca.setBack(null);        
+
+	             
+	        head.setNext(null);
+
+	        head = novaCabeca;        
+	        
+	        
+	        tamanho --;
+	        
+	        return true;
+	        
+	}
+	
+
 	private Node head = null;
 	private Node tail = null;
 
