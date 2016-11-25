@@ -1,4 +1,5 @@
 
+
 public class Lista implements Iterable<String> {
 
 	private class ListaIterator implements Iterador {
@@ -190,19 +191,18 @@ public class Lista implements Iterable<String> {
 	        return true;
 	        
 	}
+	//======================= CLASSE ==================
 	
-
 	private Node head = null;
 	private Node tail = null;
 
 	public void append(String dado) {
-		Node node = new Node(dado);
-		if (tail == null) {
-			head  = node;
-		} else {
-			tail.setNext(node);
-		}
-		tail  = node;
+		Node novo = new Node(dado);
+		
+		head.setNext(novo);
+		novo.setBack(tail);
+		tail = novo;
+		tamanho++;
 	}
 
 	public void pushFront(String dado) {
