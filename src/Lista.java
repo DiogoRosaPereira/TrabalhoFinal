@@ -4,6 +4,7 @@ public class Lista implements Iterable<String> {
 
 		private Node current = null;
 		private Node previous = null;
+		private int tamanho;
 		
 		@Override
 		public boolean hasNext() {
@@ -23,6 +24,36 @@ public class Lista implements Iterable<String> {
 			return current.dado;
 		}
 
+		public void inserirOrdenado(String dado){
+			Node novo = new Node(dado);
+			
+			if(head == null){
+				verificaHead(dado);
+					
+			}
+			else if(novo.dado.compareTo(head.dado) <= 0) {
+				pushFront(dado);
+			}
+			else if(novo.dado.compareTo(tail.dado) > 0) {
+				append(dado);
+			}else{
+				Node nodeIterator = head.getNext();
+				
+				while(nodeIterator.dado.compareTo(novo.dado) < 0){
+					nodeIterator = nodeIterator.getNext();
+				}
+				
+				Node nodeAnterior = nodeIterator.getBack();
+				
+				nodeAnterior.setNext(novo);
+				novo.setBack(nodeAnterior);
+				novo.setNext(nodeIterator);
+				nodeIterator.setBack(novo);
+			
+	            tamanho += 1; 
+			}
+		}
+		
 		@Override
 		public void insert(String dado) {
 			if (current == null) {
