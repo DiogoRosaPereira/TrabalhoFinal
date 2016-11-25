@@ -71,13 +71,23 @@ public class Lista implements Iterable<String> {
 			if (current == null) {
 				throw new IllegalStateException("Use next()!");
 			}
+			
 			Node node = new Node(dado);
-			node.setNext(current);
-			if (previous == null) {
-				head = node;
-			} else {
-				previous.setNext(node);
+			node.next = current; // o proximo de node recebe current
+			
+			if (previous != null){
+				node.next = current;
+				node.back = previous;				
+				previous.next = node;
+				current.back = node;
 			}
+			else {
+				node.next = current;
+				node.back = null;
+				current.back = node;
+				head = node;
+			}
+			tamanho++;
 		}
 		
 		@Override
