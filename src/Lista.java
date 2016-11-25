@@ -29,20 +29,22 @@ public class Lista implements Iterable<String> {
 			Node novo = new Node(dado);
 			
 			if(head == null){
-				verificaHead(dado);
+				primeiroNode(dado);
 					
 			}
-			else if(novo.dado.compareTo(head.dado) <= 0) {
+			else if(novo.dado.compareTo(head.dado) <= 0) { //se valor inserido menor que valor do head ele inserir antes.
 				pushFront(dado);
 			}
-			else if(novo.dado.compareTo(tail.dado) > 0) {
+			else if(novo.dado.compareTo(tail.dado) > 0) { // se valor inserido maior que valor da cauda ele inseri no final.
 				append(dado);
-			}else{
-				Node nodeIterator = head.getNext();
 				
-				while(nodeIterator.dado.compareTo(novo.dado) < 0){
-					nodeIterator = nodeIterator.getNext();
-				}
+				// aki faz o teste para inserir no meio..
+			}else{
+				Node nodeIterator = head.getNext();   // meu nodeIterator recebe a proxima posiçao do meu head
+				
+				while(nodeIterator.dado.compareTo(novo.dado) < 0){  // ele verifica o valor da posiçao com o valor inserido até
+					nodeIterator = nodeIterator.getNext();  		// achar um maior entao pega a posicao anterior do nodeIterator
+				}													// e faz as ligaçoes com o meu node
 				
 				Node nodeAnterior = nodeIterator.getBack();
 				
@@ -55,7 +57,7 @@ public class Lista implements Iterable<String> {
 			}
 		}
 		
-		private void verificaHead(String dado) {
+		private void primeiroNode(String dado) {  // primeiro node criado.
 			Node novo = new Node(dado);
 			if(head == null){
 				current = novo;
