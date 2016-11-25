@@ -1,3 +1,5 @@
+import trabTeste.Node;
+
 public class Lista implements Iterable<String> {
 
 	private class ListaIterator implements Iterador {
@@ -102,22 +104,41 @@ public class Lista implements Iterable<String> {
 			tamanho++;
 		}
 		
-		@Override
-		public void remove() {
+		public boolean remove(String dado) {
+			Node novo = new Node(dado);
+			
 			if (current == null) {
 				throw new IllegalStateException("Use next()!");
 			}
-			previous.setNext(current.getNext());
-			if (!hasNext()) {
-				tail = previous;
-			}
-			if (current == head) {
-				head = head.getNext();
-			}
-		}
-		
+			if(novo == null || head == null)
+		            return false;
+		        
+		        
+		    if(novo.dado.compareTo(head.dado)==0)
+		            return removePrimeiro();
+		        
+		        if(novo.dado.compareTo(tail.dado)==0)
+		            return removeUltimo();
+		        
+		        Node nodoIterador = head.getNext();
+		        
+		        while(nodoIterador != null && nodoIterador.dado.compareTo(novo.dado)!=0)
+		            nodoIterador = nodoIterador.getNext();
+		        
+		        if(nodoIterador == null)
+		            return false;
+		        
+		        
+		        Node nodoAnterior = nodoIterador.getBack();
+		        
+		        nodoAnterior.setNext(nodoIterador.getNext());
+		        nodoAnterior.getNext().setBack(nodoAnterior);
+		        nodoIterador.setNext(null);
+		        nodoIterador.setBack(null);
+		        
+		        tamanho --;
+		        return true;
 	}
-	
 	
 	
 	private Node head = null;
