@@ -1,5 +1,3 @@
-import trabTeste.Node;
-
 public class Lista implements Iterable<String> {
 
 	private class ListaIterator implements Iterador {
@@ -95,13 +93,13 @@ public class Lista implements Iterable<String> {
 			if (current == null) {
 				throw new IllegalStateException("Use next()!");
 			}
-			Node node = new Node(dado);
-			Node proximo = current.getNext();
-			node.setNext(proximo);
-			current.setNext(node);
-			if (proximo == null) {
-				tail = node;
-			}
+			
+			Node novo = new Node(dado);
+			
+			head.setNext(novo);
+			novo.setBack(tail);
+			tail = novo;
+			tamanho++;
 		}
 		
 		@Override
